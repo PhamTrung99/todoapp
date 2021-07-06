@@ -11,7 +11,7 @@ export default function Todo(params) {
     const [todoState, dispatch] = useReducer(reducer, data);
 
     const getIDMax = () => {
-        let idArr = [];
+        let idArr = [0];
         todoState.map(item => idArr.push(+item.id));
         idArr.sort();
         return idArr.pop(); //Max value of ID in data
