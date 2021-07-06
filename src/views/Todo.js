@@ -1,9 +1,9 @@
 import React, { useContext,useReducer } from 'react';
-import TextField from '@material-ui/core/TextField';
 import List from '@material-ui/core/List';
 import TodoItem from '../components/TodoItem';
 import { dataContext } from '../stores/context.todo';
 import reducer from '../reducer/reducer.todo';
+import InputBar from '../components/InputBar/InputBar';
 
 
 export default function Todo(params) {
@@ -12,19 +12,8 @@ export default function Todo(params) {
 
     return (
         <>
-            <TextField
-                id="standard-full-width"
-                label="Search"
-                style={{ margin: 8 }}
-                placeholder="Placeholder"
-                // helperText="Full width!"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-            />
-
+            <InputBar dispatch={dispatch} ></InputBar>
+            
             <List component="nav" aria-label="secondary mailbox folders">
                 {
                     todoState.map(item => <TodoItem item={item} dispatch={dispatch}/>)

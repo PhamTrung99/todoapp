@@ -3,7 +3,7 @@ import React from 'react'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import DeleteIcon from '@material-ui/icons/Delete';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import IconButton from '@material-ui/core/IconButton';
 
@@ -27,7 +27,7 @@ export default function TodoItem({ item, dispatch }) {
             <ListItem button>
                 {item.complete ? <ListItemText secondary={item.title} /> : <ListItemText primary={item.title} />}
                 <IconButton edge="end" aria-label="delete" >
-                    {item.complete || <DeleteIcon onClick={() => handleDeleteTask(item.id)} />}
+                    {item.complete || <CheckCircleOutlineIcon onClick={() => handleDeleteTask(item.id)} />}
                     {item.complete && <AddCircleOutlineIcon onClick={() => handleReAddTask(item.id)} />}
                 </IconButton>
             </ListItem>
