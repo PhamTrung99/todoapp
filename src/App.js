@@ -8,6 +8,7 @@ const data = [
 ];
 
 function App() {
+
   return (
     <div className="container">
       <dataContext.Provider value={data}>

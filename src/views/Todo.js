@@ -10,13 +10,20 @@ export default function Todo(params) {
     const data = useContext(dataContext);
     const [todoState, dispatch] = useReducer(reducer, data);
 
+    const getIDMax = () => {
+        let idArr = [];
+        todoState.map(item => idArr.push(+item.id));
+        idArr.sort();
+        return idArr.pop(); //Max value of ID in data
+    }
+
     return (
         <>
-            <InputBar dispatch={dispatch} ></InputBar>
+            <InputBar dispatch={dispatch} idMax={getIDMax} ></InputBar>
             
             <List component="nav" aria-label="secondary mailbox folders">
                 {
-                    todoState.map(item => <TodoItem item={item} dispatch={dispatch}/>)
+                    todoState.map(item => <TodoItem item={item} dispatch={dispatch} />)
                 }
             </List>
         </>

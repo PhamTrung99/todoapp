@@ -1,26 +1,31 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import './style.inputBar.css';
 import { taskName } from '../../reducer/taskName.todo';
 
-export default function InputBar({dispatch}) {
+export default function InputBar({ dispatch, idMax }) {
     const [inputText, setinputText] = useState('');
 
-    const handleAddTask = (title)=> {dispatch({
-        type: taskName.TASK_ADD,
-        query: inputText
-    })
-    resetValue();
+    const handleAddTask = (title) => {
+        let newId = idMax()+1;
+        dispatch({
+            type: taskName.TASK_ADD,
+            query: inputText,
+            newId: newId
+        })
+        resetValue();
     };
 
     const resetValue = () => setinputText('');
-    
+
     const hanleOnChangeInput = (e) => {
         setinputText(e.target.value)
     };
+
     
+
 
     return (
         <>
@@ -38,17 +43,17 @@ export default function InputBar({dispatch}) {
                 onChange={hanleOnChangeInput}
             />
             <div className="div-input-bar">
-            <Button
-                variant="contained"
-                color="primary"
-                size="small"
-                startIcon={<SaveIcon />}
-                onClick={()=>handleAddTask()}
-            >
-                Save
-            </Button>
+               {inputText &&  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    startIcon={<SaveIcon />}
+                    onClick={() => handleAddTask()}
+                >
+                    Save
+                </Button>}
             </div>
-            
+
         </>
     )
 };
